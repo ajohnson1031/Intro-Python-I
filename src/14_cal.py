@@ -35,18 +35,14 @@ from datetime import datetime
 newdate = datetime.today()
 cal = calendar.TextCalendar(firstweekday=6);
 
-# Formatted input
-x = [d.strip() for d in input("Enter comma-separated month and year in number format (ex., 5, 2020)... ").split(',')]
-x = None if x == [''] else x
-
-def print_cal(x=None):
-      if x == None:
-          print(cal.formatmonth(newdate.year, newdate.month))
+def print_cal(x):
+      if len(x) == 0:
+        print(cal.formatmonth(newdate.year, newdate.month))
       elif len(x) == 1:
-          print(cal.formatmonth(newdate.year, int(x[0])))
+        print(cal.formatmonth(newdate.year, int(x[0].strip())))
       elif len(x) == 2:
-          print(cal.formatmonth(int(x[1]), int(x[0]) ))
+        print(cal.formatmonth(int(x[1].strip()), int(x[0].strip()) ))
       else:
-          print("PLEASE RE-ENTER the comma-separated month and year in number format (ex., 5, 2020)")
-   
-print_cal()
+        print("PLEASE RE-ENTER the comma-separated month and year in number format (ex., 5, 2020)")
+          
+print_cal(sys.argv[1:])
